@@ -13,10 +13,7 @@ import java.io.PrintWriter;
 import java.nio.Buffer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import javax.xml.crypto.Data;
 
@@ -363,5 +360,39 @@ public class SlangWord{
             outStream.close();
         }
         readFile(FILE_SLANGWORD);
-    }   
+    }
+
+    /**
+     * random number
+     * @param min
+     * @param max
+     * @return int
+     */
+    public int getRandomNumberUsingNextInt(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
+
+    /**
+     * random slangword
+     * @return String[]
+     */
+    public String[] RandomSlangWord() {
+        int rand = getRandomNumberUsingNextInt(0,mapSlang.size()-1);
+        String wordRand[] = new String[2];
+        int i = 0;
+        Set<String> keySet = mapSlang.keySet();
+        for (String key : keySet) {
+            if(i==rand){
+                int sizeKey=mapSlang.get(key).size();
+                int randOther=0;
+                if (sizeKey!=1) randOther=getRandomNumberUsingNextInt(0,sizeKey-1);
+                wordRand[0]=key;
+                wordRand[1]=mapSlang.get(key).get(randOther);
+                break;
+            }
+            i++;
+        }
+        return wordRand;
+    }
 }

@@ -257,6 +257,10 @@ public class menuframe  extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
         }
+        else if (e.getSource().equals(btnRandom)){
+            this.dispose();
+            randomslangword.GUI();
+        }
     }
     /**
      * Event dispatch thread

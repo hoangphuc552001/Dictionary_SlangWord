@@ -16,6 +16,7 @@ public class randomslangword extends JFrame implements ActionListener {
     JLabel slanglabel, meanininglabel;
     JTextField slang_text,meaning_text;
     JButton back,refresh;
+    SlangWord slangWord = SlangWord.getInstance();
     /**
      * default constructor
      *
@@ -47,6 +48,7 @@ public class randomslangword extends JFrame implements ActionListener {
         slanglabel.setFont(new Font("Monaco", Font.BOLD, 16));
         slang_text = new JTextField();
         slang_text.setPreferredSize(new Dimension(30,30));
+        slang_text.setEditable(false);
         JPanel toppanel=new JPanel();
         toppanel.setLayout(new BoxLayout(toppanel,BoxLayout.LINE_AXIS));
         toppanel.add(Box.createRigidArea(new Dimension(30,0)));
@@ -61,9 +63,9 @@ public class randomslangword extends JFrame implements ActionListener {
         meanininglabel = new JLabel();
         meanininglabel.setText("Meaning :");
         meanininglabel.setFont(new Font("Monaco", Font.BOLD, 16));
-        meaning_text = new JPasswordField();
+        meaning_text = new JTextField();
         meaning_text.setPreferredSize(new Dimension(30,30));
-
+        meaning_text.setEditable(false);
         JPanel toppanel1=new JPanel();
         toppanel1.setLayout(new BoxLayout(toppanel1,BoxLayout.LINE_AXIS));
         toppanel1.add(Box.createRigidArea(new Dimension(30,0)));
@@ -75,6 +77,12 @@ public class randomslangword extends JFrame implements ActionListener {
         pp1.setLayout(new BoxLayout(pp1,BoxLayout.PAGE_AXIS));
         pp1.add(Box.createRigidArea(new Dimension(0,30)));
         pp1.add(toppanel1);
+        //
+        String[] randWord=slangWord.RandomSlangWord();
+        slang_text.setFont(slang_text.getFont().deriveFont(Font.PLAIN, 14f));
+        slang_text.setText(randWord[0]);
+        meaning_text.setFont(meaning_text.getFont().deriveFont(Font.PLAIN, 14f));
+        meaning_text.setText(randWord[1]);
         back = new JButton("Back");
         back.setAlignmentX(CENTER_ALIGNMENT);
         back.addActionListener(this);
@@ -140,9 +148,13 @@ public class randomslangword extends JFrame implements ActionListener {
             this.dispose();
             menuframe.GUI();
         }
-    }
-    public static void main(String[] args){
-        randomslangword.GUI();
+        else if (e.getSource().equals(refresh)){
+            String[] randWord=slangWord.RandomSlangWord();
+            slang_text.setFont(slang_text.getFont().deriveFont(Font.PLAIN, 14f));
+            slang_text.setText(randWord[0]);
+            meaning_text.setFont(meaning_text.getFont().deriveFont(Font.PLAIN, 14f));
+            meaning_text.setText(randWord[1]);
+        }
     }
 }
 
