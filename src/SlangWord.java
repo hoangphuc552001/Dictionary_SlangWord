@@ -395,4 +395,21 @@ public class SlangWord{
         }
         return wordRand;
     }
+
+    /**
+     * Update slang
+     * @param sw
+     * @param oldVal
+     * @param newVal
+     */
+    public void UpdateSlangWord(String sw,String oldVal,String newVal){
+        List<String> meaning = mapSlang.get(sw);
+        int i_Old=meaning.indexOf(oldVal);
+        meaning.set(i_Old, newVal);
+        try {
+            writeFile(FILE_SLANGWORD);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

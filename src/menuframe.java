@@ -260,6 +260,9 @@ public class menuframe  extends JFrame implements ActionListener {
         else if (e.getSource().equals(btnRandom)){
             this.dispose();
             randomslangword.GUI();
+        }else if (e.getSource().equals(btnEdit)){
+            this.dispose();
+            editslangword.GUI();
         }
     }
     /**
