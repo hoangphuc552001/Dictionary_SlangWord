@@ -9,14 +9,14 @@ public class MultipleChoice extends JFrame implements ActionListener {
         Container con = this.getContentPane();
         JPanel jPanel=new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel,BoxLayout.LINE_AXIS));
-        findbaseddef_=new JButton("Find based definition");
+        findbaseddef_=new JButton("Random based definition");
         findbaseddef_.setAlignmentX(CENTER_ALIGNMENT);
         findbaseddef_.addActionListener(this);
         findbaseddef_.setFocusable(false);
         findbaseddef_.setBackground(new Color(255, 77, 0));
         findbaseddef_.setForeground(Color.white);
         findbaseddef_.setUI(new stylebutton());
-        findbasedsw_=new JButton("Find based slang word");
+        findbasedsw_=new JButton("Random based slang word");
         findbasedsw_.setAlignmentX(CENTER_ALIGNMENT);
         findbasedsw_.addActionListener(this);
         findbasedsw_.setFocusable(false);
@@ -69,15 +69,7 @@ public class MultipleChoice extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(findbaseddef_)){
-            this.dispose();
-            findbaseddef.GUI();
-        }
-        else if (e.getSource().equals(findbasedsw_)){
-            this.dispose();
-            findbasedsw.GUI();
-        }
-        else if (e.getSource().equals(btnBack)){
+        if (e.getSource().equals(btnBack)){
             this.dispose();
             menuframe.GUI();
         }
