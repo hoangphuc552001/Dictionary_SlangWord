@@ -13,14 +13,14 @@ public class MultipleChoice extends JFrame implements ActionListener {
         findbaseddef_.setAlignmentX(CENTER_ALIGNMENT);
         findbaseddef_.addActionListener(this);
         findbaseddef_.setFocusable(false);
-        findbaseddef_.setBackground(new Color(255, 77, 0));
+        findbaseddef_.setBackground(new Color(243, 159, 63));
         findbaseddef_.setForeground(Color.white);
         findbaseddef_.setUI(new stylebutton());
         findbasedsw_=new JButton("Random based slang word");
         findbasedsw_.setAlignmentX(CENTER_ALIGNMENT);
         findbasedsw_.addActionListener(this);
         findbasedsw_.setFocusable(false);
-        findbasedsw_.setBackground(new Color(255, 77, 0));
+        findbasedsw_.setBackground(new Color(243, 159, 63));
         findbasedsw_.setForeground(Color.white);
         findbasedsw_.setUI(new stylebutton());
 
@@ -28,7 +28,7 @@ public class MultipleChoice extends JFrame implements ActionListener {
         btnBack.setAlignmentX(CENTER_ALIGNMENT);
         btnBack.addActionListener(this);
         btnBack.setFocusable(false);
-        btnBack.setBackground(new Color(243, 159, 63));
+        btnBack.setBackground(new Color(232, 55, 35));
         btnBack.setForeground(Color.white);
         btnBack.setUI(new stylebutton());
         jPanel.add(findbaseddef_);
@@ -73,8 +73,10 @@ public class MultipleChoice extends JFrame implements ActionListener {
             this.dispose();
             menuframe.GUI();
         }
+        else if (e.getSource().equals(findbasedsw_)){
+            this.dispose();
+            RandomBySW.GUI();
+        }
     }
-    public static void main(String[] args){
-        MultipleChoice.GUI();;
-    }
+
 }

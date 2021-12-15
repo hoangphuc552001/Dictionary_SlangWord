@@ -412,4 +412,31 @@ public class SlangWord{
             e.printStackTrace();
         }
     }
+
+    /**
+     * quiz game
+     * @param type
+     * @return random multiple choice String[]
+     */
+    public String[] randomMultipleChoice(int type){
+         String[] arrMTPChoice=new String[6];
+         if (type==1){
+             String[] randomSW= RandomSlangWord();
+             arrMTPChoice[0]=randomSW[0];
+             int rand=getRandomNumberUsingNextInt(1,4);
+             arrMTPChoice[rand]=randomSW[1];
+             for (int i=1;i<=4;i++){
+                 if (i!=rand){
+                     String[] slangRand = RandomSlangWord();
+                     while (slangRand[0].equals(arrMTPChoice[0])) {
+                         slangRand = RandomSlangWord();
+                     }
+                     arrMTPChoice[i]=slangRand[1];
+                 }
+             }
+             arrMTPChoice[5]=randomSW[1];
+             return arrMTPChoice;
+         }
+         return null;
+    }
 }
