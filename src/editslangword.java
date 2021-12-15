@@ -245,8 +245,4 @@ public class editslangword extends JFrame implements ActionListener {
             }
         });
     }
-
-    public static void main(String[] args) {
-        editslangword.GUI();
-    }
 }
