@@ -153,7 +153,10 @@ public class RandomBySW extends JFrame implements ActionListener {
         answerC.setText(quizChoice[3]);
         answerD.setText(quizChoice[4]);
         titSW.setText(quizChoice[0]);
-
+        answerA.setFont(new Font("Monaco", Font.BOLD, 30));
+        answerB.setFont(new Font("Monaco", Font.BOLD, 30));
+        answerC.setFont(new Font("Monaco", Font.BOLD, 30));
+        answerD.setFont(new Font("Monaco", Font.BOLD, 30));
         // Setting JFrame
         this.setTitle("Random Slang Word");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -203,35 +206,137 @@ public class RandomBySW extends JFrame implements ActionListener {
             answerB.setBackground(new Color(18, 0, 147));
             answerC.setBackground(new Color(18, 0, 147));
             answerD.setBackground(new Color(18, 0, 147));
+            answerA.setFont(new Font("Monaco", Font.BOLD, 30));
+            answerB.setFont(new Font("Monaco", Font.BOLD, 30));
+            answerC.setFont(new Font("Monaco", Font.BOLD, 30));
+            answerD.setFont(new Font("Monaco", Font.BOLD, 30));
+            answerA.setEnabled(true);
+            answerB.setEnabled(true);
+            answerC.setEnabled(true);
+            answerD.setEnabled(true);
             answerA.setText(quizChoice[1]);
             answerB.setText(quizChoice[2]);
             answerC.setText(quizChoice[3]);
             answerD.setText(quizChoice[4]);
-        }
-        else if (e.getSource().equals(answerA)) {
-            if (check==1){
-                JOptionPane.showMessageDialog(null,"Correct Answer");
+        } else if (e.getSource().equals(answerA)) {
+            if (check == 1) {
+                JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerA.setBackground(new Color(0, 255, 102));
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
+                answerA.setBackground(new Color(225, 10, 10));
+                if (check == 2) {
+                    answerB.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 3) {
+                    answerC.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 4) {
+                    answerD.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
             }
-        }
-        else if (e.getSource().equals(answerB)) {
-            if (check==2){
-                JOptionPane.showMessageDialog(null,"Correct Answer");
+        } else if (e.getSource().equals(answerB)) {
+            if (check == 2) {
+                JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerB.setBackground(new Color(0, 255, 102));
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
+                answerB.setBackground(new Color(225, 10, 10));
+                if (check == 1) {
+                    answerA.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 3) {
+                    answerC.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 4) {
+                    answerD.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
             }
-        }
-        else if (e.getSource().equals(answerC)) {
-            if (check==3){
-                JOptionPane.showMessageDialog(null,"Correct Answer");
+        } else if (e.getSource().equals(answerC)) {
+            if (check == 3) {
+                JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerC.setBackground(new Color(0, 255, 102));
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
+                answerC.setBackground(new Color(225, 10, 10));
+                if (check == 1) {
+                    answerA.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 2) {
+                    answerB.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
+                if (check == 4) {
+                    answerD.setBackground(new Color(0, 255, 102));
+                    answerA.setEnabled(false);
+                    answerB.setEnabled(false);
+                    answerC.setEnabled(false);
+                    answerD.setEnabled(false);
+                }
             }
         }
-        else if (e.getSource().equals(answerD)) {
-            if (check==4){
-                JOptionPane.showMessageDialog(null,"Correct Answer");
-                answerD.setBackground(new Color(0, 255, 102));
+
+    else if(e.getSource().equals(answerD))
+        if (check == 4) {
+            JOptionPane.showMessageDialog(null, "Correct Answer");
+            answerD.setBackground(new Color(0, 255, 102));
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
+            answerD.setBackground(new Color(225, 10, 10));
+            if (check == 1) {
+                answerA.setBackground(new Color(0, 255, 102));
+                answerA.setEnabled(false);
+                answerB.setEnabled(false);
+                answerC.setEnabled(false);
+                answerD.setEnabled(false);
+            }
+            if (check == 2) {
+                answerB.setBackground(new Color(0, 255, 102));
+                answerA.setEnabled(false);
+                answerB.setEnabled(false);
+                answerC.setEnabled(false);
+                answerD.setEnabled(false);
+            }
+            if (check == 3) {
+                answerC.setBackground(new Color(0, 255, 102));
+                answerA.setEnabled(false);
+                answerB.setEnabled(false);
+                answerC.setEnabled(false);
+                answerD.setEnabled(false);
             }
         }
+
         quizChoice = slangWord.randomMultipleChoice(1);
         String answer = quizChoice[5];
     }
