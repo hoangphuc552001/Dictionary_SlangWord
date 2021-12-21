@@ -39,6 +39,7 @@ public class MultipleChoice extends JFrame implements ActionListener {
         jPanel1.add(jPanel);
         jPanel1.add(Box.createRigidArea(new Dimension(0,15)));
         jPanel1.add(btnBack);
+        jPanel1.add(Box.createRigidArea(new Dimension(0,30)));
         // Setting con
         con.setLayout(new BorderLayout());
         con.add(Box.createRigidArea(new Dimension(0,15)),BorderLayout.PAGE_START);
@@ -76,6 +77,10 @@ public class MultipleChoice extends JFrame implements ActionListener {
         else if (e.getSource().equals(findbasedsw_)){
             this.dispose();
             RandomBySW.GUI();
+        }
+        else if (e.getSource().equals(findbaseddef_)){
+            this.dispose();
+            RandomByDef.GUI();
         }
     }
 

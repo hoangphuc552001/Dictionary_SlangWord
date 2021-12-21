@@ -12,7 +12,7 @@ public class findbaseddef extends JFrame implements ActionListener {
 	JTextField jIDf;
 	SlangWord slangWord = SlangWord.getInstance();
 	JTable j;
-
+	JProgressBar jpb;
 	/**
 	 * default constructor
 	 *
@@ -86,6 +86,10 @@ public class findbaseddef extends JFrame implements ActionListener {
 		jInfor.add(jId);
 		jInfor.add(jIDf);
 		jInfor.add(ok);
+		jpb=new JProgressBar();
+		jpb.setValue(0);
+		jpb.setStringPainted(true);
+		jInfor.add(jpb);
 		topPanel.add(jInfor);
 		//mid pannel
 		JPanel jMid = new JPanel();
@@ -138,12 +142,32 @@ public class findbaseddef extends JFrame implements ActionListener {
 			this.dispose();
 			FindWord.GUI();
 		} else if (e.getSource().equals(ok)) {
+			//Execute when button is pressed
+			ChildThread rl=new ChildThread(jpb);
+		}
+	}
+	class ChildThread extends Thread {
+		JProgressBar jProgressBar;
+		ChildThread() {
+
+			super("Child Thread");//gán tên cho thread
+			System.out.println("Child thread: " + this);
+			//start();
+		}
+		ChildThread(JProgressBar num){
+			jProgressBar=num;
+			start();
+		}
+		public void run() {
 			String id = jIDf.getText().toString();
 			String[][] findDef = slangWord.findDef(id);
+			int ii=0;
 			if (findDef!=null){
 				for (int i=0;i<findDef.length;i++){
 					try {
 						slangWord.writeFileHisory(findDef[i][1], findDef[i][2]);
+						ii=100/(findDef.length-i);
+						jProgressBar.setValue(ii);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
@@ -159,7 +183,6 @@ public class findbaseddef extends JFrame implements ActionListener {
 			j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 		}
 	}
-
 	/**
 	 * Event dispatch thread
 	 */

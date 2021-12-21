@@ -20,7 +20,8 @@ public class RandomBySW extends JFrame implements ActionListener {
     int check = 0;
     String[] quizChoice;
     String answer;
-
+    int correct=0;
+    int total=1;
     /**
      * default constructor
      *
@@ -175,7 +176,7 @@ public class RandomBySW extends JFrame implements ActionListener {
         this.setTitle("Random Slang Word");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setSize(860, 550);
+        this.setSize(900, 550);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
@@ -200,14 +201,16 @@ public class RandomBySW extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(back)) {
+            JOptionPane.showMessageDialog(null,
+                    "Result: "+correct+"/"+total);
             this.dispose();
             MultipleChoice.GUI();
         } else if (e.getSource().equals(next)) {
+            total++;
             answerA.setEnabled(true);
             answerB.setEnabled(true);
             answerC.setEnabled(true);
             answerD.setEnabled(true);
-            titSW.setText(quizChoice[0]);
             answerA.setBackground(new Color(18, 0, 147));
             answerB.setBackground(new Color(18, 0, 147));
             answerC.setBackground(new Color(18, 0, 147));
@@ -216,12 +219,13 @@ public class RandomBySW extends JFrame implements ActionListener {
             answerB.setFont(new Font("Monaco", Font.BOLD, 30));
             answerC.setFont(new Font("Monaco", Font.BOLD, 30));
             answerD.setFont(new Font("Monaco", Font.BOLD, 30));
+            quizChoice = slangWord.randomMultipleChoice(1);
             answerA.setText(quizChoice[1]);
             answerB.setText(quizChoice[2]);
             answerC.setText(quizChoice[3]);
             answerD.setText(quizChoice[4]);
-            quizChoice = slangWord.randomMultipleChoice(1);
-            String answer1 = quizChoice[5];
+            titSW.setText(quizChoice[0]);
+            answer = quizChoice[5];
             if (answerA.getText().equals(answer)){
                 check = 1;
             }
@@ -234,11 +238,11 @@ public class RandomBySW extends JFrame implements ActionListener {
             if (answerD.getText().equals(answer)) {
                 check = 4;
             }
-            answer=answer1;
         } else if (e.getSource().equals(answerA)) {
             if (check == 1) {
                 JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerA.setBackground(new Color(0, 255, 102));
+                correct++;
             } else {
                 JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
                 answerA.setBackground(new Color(225, 10, 10));
@@ -260,6 +264,7 @@ public class RandomBySW extends JFrame implements ActionListener {
             if (check == 2) {
                 JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerB.setBackground(new Color(0, 255, 102));
+                correct++;
             } else {
                 JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
                 answerB.setBackground(new Color(225, 10, 10));
@@ -281,6 +286,7 @@ public class RandomBySW extends JFrame implements ActionListener {
             if (check == 3) {
                 JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerC.setBackground(new Color(0, 255, 102));
+                correct++;
             } else {
                 JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
                 answerC.setBackground(new Color(225, 10, 10));
@@ -305,6 +311,7 @@ public class RandomBySW extends JFrame implements ActionListener {
             if (check == 4) {
                 JOptionPane.showMessageDialog(null, "Correct Answer");
                 answerD.setBackground(new Color(0, 255, 102));
+                correct++;
             } else {
                 JOptionPane.showMessageDialog(null, "Incorred Answer", "Alert", JOptionPane.WARNING_MESSAGE);
                 answerD.setBackground(new Color(225, 10, 10));
@@ -317,7 +324,6 @@ public class RandomBySW extends JFrame implements ActionListener {
                 }
                 if (check == 3) {
                     answerC.setBackground(new Color(0, 255, 102));
-
                 }
 
             }
@@ -327,9 +333,6 @@ public class RandomBySW extends JFrame implements ActionListener {
             answerC.setEnabled(false);
             answerD.setEnabled(false);
         }
-    }
-    public static void main(String[] args) {
-        RandomBySW.GUI();
     }
 }
 
