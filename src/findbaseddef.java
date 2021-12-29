@@ -55,29 +55,9 @@ public class findbaseddef extends JFrame implements ActionListener {
 		jIDf = new JTextField(10);
 		jIDf.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				super.keyPressed(e);
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					String id = jIDf.getText().toString();
-					String[][] findDef = slangWord.findDef(id);
-					if (findDef!=null){
-						for (int i=0;i<findDef.length;i++){
-							try {
-								slangWord.writeFileHisory(findDef[i][1], findDef[i][2]);
-							} catch (Exception ex) {
-								ex.printStackTrace();
-							}
-						}
-					}
-					String[] columnNames = {"STT", "Slang Word", "Meaning"};
-					DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
-					DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-					j.setModel(model);
-					centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-					j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-					j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-					j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-				}
+			public void keyReleased(KeyEvent e) {
+				super.keyReleased(e);
+				ChildThread childThread=new ChildThread(jpb);
 			}
 		});
 		ok = new JButton("OK");
@@ -85,7 +65,6 @@ public class findbaseddef extends JFrame implements ActionListener {
 		ok.addActionListener(this);
 		jInfor.add(jId);
 		jInfor.add(jIDf);
-		jInfor.add(ok);
 		jpb=new JProgressBar();
 		jpb.setValue(0);
 		jpb.setStringPainted(true);

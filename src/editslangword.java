@@ -18,6 +18,7 @@ public class editslangword extends JFrame implements ActionListener {
     SlangWord slangWord = SlangWord.getInstance();
     JTable j;
     String oldValue="";
+    JProgressBar jpb;
     int row = -1;
     int col = -1;
     int check=1;
@@ -65,18 +66,7 @@ public class editslangword extends JFrame implements ActionListener {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String id = jIDf.getText().toString();
-                    String[][] findDef = slangWord.findSlangWord(id);
-                    String[] columnNames = {"STT", "Slang Word", "Meaning"};
-                    DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
-                    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-                    j.setModel(model);
-                    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-                    j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-                    j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-                    j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-                }
+                ChildThread childThread=new ChildThread(jpb);
             }
         });
         ok = new JButton("OK");
@@ -84,7 +74,10 @@ public class editslangword extends JFrame implements ActionListener {
         ok.addActionListener(this);
         jInfor.add(jId);
         jInfor.add(jIDf);
-        jInfor.add(ok);
+        jpb=new JProgressBar();
+        jpb.setValue(0);
+        jpb.setStringPainted(true);
+        jInfor.add(jpb);
         topPanel.add(jInfor);
         //mid pannel
         JPanel jMid = new JPanel();
@@ -138,7 +131,89 @@ public class editslangword extends JFrame implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
+    class ChildThread extends Thread {
+        JProgressBar jProgressBar;
+        ChildThread() {
 
+            super("Child Thread");//gán tên cho thread
+            System.out.println("Child thread: " + this);
+            //start();
+        }
+        ChildThread(JProgressBar num){
+            jProgressBar=num;
+            start();
+        }
+        public void run() {
+            String id = jIDf.getText().toString();
+            String[][] findDef = slangWord.findSlangWord(id);
+            int ii=0;
+            if (findDef!=null){
+                for (int i=0;i<findDef.length;i++){
+                    try {
+                        slangWord.writeFileHisory(findDef[i][1], findDef[i][2]);
+                        ii=100/(findDef.length-i);
+                        jProgressBar.setValue(ii);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            String[] columnNames = {"STT", "Slang Word", "Meaning"};
+            DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            j.setModel(model);
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+            j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+            j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+            ListSelectionModel cellSelectionModel = j.getSelectionModel();
+            cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    int[] selectedRow = j.getSelectedRows();
+                    String[] arrSelect=new String[2];
+                    for (int i = 0; i < selectedRow.length; i++) {
+                        arrSelect[0] = (String) j.getValueAt(selectedRow[i], 1);
+                        arrSelect[1] = (String) j.getValueAt(selectedRow[i], 2);
+                    }
+                    if (arrSelect[0]!=null || arrSelect[1]!=null){
+                        if (check!=0) {
+                            int a = JOptionPane.showConfirmDialog(null,
+                                    "Did you want this meaning: " + arrSelect[1] + "?");
+                            String[][] findDef = new String[1][3];
+                            findDef[0][0]="1";
+                            findDef[0][1]=arrSelect[0];
+                            findDef[0][2]=arrSelect[1];
+                            oldValue=arrSelect[1];
+                            String[] columnNames = {"STT", "Slang Word", "Meaning"};
+                            DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
+                            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                            j.setModel(model);
+                            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+                            j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+                            j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+                            j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+                            ListSelectionModel cellSelectionModel = j.getSelectionModel();
+                            cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                            check=0;
+                        }else{
+                            j.getModel().addTableModelListener(new TableModelListener() {
+                                @Override
+                                public void tableChanged(TableModelEvent e) {
+                                    row = j.getSelectedRow();
+                                    col = j.getSelectedColumn();
+                                    if (row == -1 || col == -1)
+                                        return;
+                                    String valueChanged = (String) j.getValueAt(row, col);
+                                }
+                            });
+                        }
+
+                    }}
+            });
+        }
+    }
     /**
      * set action listener
      */
@@ -170,7 +245,7 @@ public class editslangword extends JFrame implements ActionListener {
                         arrSelect[0] = (String) j.getValueAt(selectedRow[i], 1);
                         arrSelect[1] = (String) j.getValueAt(selectedRow[i], 2);
                     }
-                    if (arrSelect[0]!=null || arrSelect[0]!=null){
+                    if (arrSelect[0]!=null || arrSelect[1]!=null){
                     if (check!=0) {
                         int a = JOptionPane.showConfirmDialog(null,
                                 "Did you want this meaning: " + arrSelect[1] + "?");

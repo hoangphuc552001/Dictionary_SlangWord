@@ -16,6 +16,7 @@ public class deleteslangword extends JFrame implements ActionListener {
     JTextField jIDf;
     SlangWord slangWord = SlangWord.getInstance();
     JTable j;
+    JProgressBar jpb;
 
     /**
      * default constructor
@@ -59,20 +60,9 @@ public class deleteslangword extends JFrame implements ActionListener {
         jIDf = new JTextField(10);
         jIDf.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String id = jIDf.getText().toString();
-                    String[][] findDef = slangWord.findSlangWord(id);
-                    String[] columnNames = {"STT", "Slang Word", "Meaning"};
-                    DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
-                    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-                    j.setModel(model);
-                    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-                    j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-                    j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-                    j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-                }
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                ChildThread childThread=new ChildThread(jpb);
             }
         });
         ok = new JButton("OK");
@@ -80,7 +70,10 @@ public class deleteslangword extends JFrame implements ActionListener {
         ok.addActionListener(this);
         jInfor.add(jId);
         jInfor.add(jIDf);
-        jInfor.add(ok);
+        jpb=new JProgressBar();
+        jpb.setValue(0);
+        jpb.setStringPainted(true);
+        jInfor.add(jpb);
         topPanel.add(jInfor);
         //mid pannel
         JPanel jMid = new JPanel();
@@ -158,7 +151,43 @@ public class deleteslangword extends JFrame implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
+    class ChildThread extends Thread {
+        JProgressBar jProgressBar;
+        ChildThread() {
 
+            super("Child Thread");//gán tên cho thread
+            System.out.println("Child thread: " + this);
+            //start();
+        }
+        ChildThread(JProgressBar num){
+            jProgressBar=num;
+            start();
+        }
+        public void run() {
+            String id = jIDf.getText().toString();
+            String[][] findDef = slangWord.findSlangWord(id);
+            int ii=0;
+            if (findDef!=null){
+                for (int i=0;i<findDef.length;i++){
+                    try {
+                        slangWord.writeFileHisory(findDef[i][1], findDef[i][2]);
+                        ii=100/(findDef.length-i);
+                        jProgressBar.setValue(ii);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            String[] columnNames = {"STT", "Slang Word", "Meaning"};
+            DefaultTableModel model = new DefaultTableModel(findDef, columnNames);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            j.setModel(model);
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+            j.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            j.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+            j.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        }
+    }
     /**
      * set action listener
      */

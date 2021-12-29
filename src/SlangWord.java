@@ -180,7 +180,7 @@ public class SlangWord {
         List<String> slang = new ArrayList<String>();
         List<String> meaning = new ArrayList<String>();
         for (int i = 0; i < data.length; i++) {
-            if (data[i][2].toLowerCase().contains(slangword.toLowerCase())) {
+            if (data[i][2].toLowerCase().startsWith(slangword.toLowerCase())) {
                 slang.add(data[i][1]);
                 meaning.add(data[i][2]);
             }
