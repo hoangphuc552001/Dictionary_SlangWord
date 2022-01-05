@@ -6,7 +6,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Find definition frame
+ */
 public class findbaseddef extends JFrame implements ActionListener {
 	JButton btnBack, ok;
 	JTextField jIDf;

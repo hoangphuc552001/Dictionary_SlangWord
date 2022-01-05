@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Random slang word function frame
+ */
 public class randomslangword extends JFrame implements ActionListener {
 
     //

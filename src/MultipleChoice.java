@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Multiple choice function frame
+ */
 public class MultipleChoice extends JFrame implements ActionListener {
     JButton findbaseddef_, findbasedsw_,btnBack;
     MultipleChoice(){

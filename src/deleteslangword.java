@@ -10,7 +10,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Delete slang word function frame
+ */
 public class deleteslangword extends JFrame implements ActionListener {
     JButton btnBack, ok, loadAll;
     JTextField jIDf;

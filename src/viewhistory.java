@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.io.FileWriter;
+/**
+ * Created by Le Hoang Phuc-19127059
+ * View History function frame
+ */
 public class viewhistory extends JFrame implements ActionListener{
 	JButton btnBack;
 	JLabel jlbClearHistory;

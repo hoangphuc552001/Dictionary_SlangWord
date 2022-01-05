@@ -6,7 +6,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Find base slang word frame
+ */
 public class findbasedsw extends JFrame implements ActionListener {
     JButton btnBack, ok, loadAll;
     JTextField jIDf;

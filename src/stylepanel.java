@@ -5,6 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Phần tham khảo UI Panel
+ */
 public class stylepanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {

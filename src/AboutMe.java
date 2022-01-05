@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * About me function frame
+ */
 public class AboutMe extends JFrame implements ActionListener{
     JTextPane txtMessage;
     JButton back;

@@ -3,6 +3,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+/**
+ * Created by Le Hoang Phuc-19127059
+ * List frame function
+ */
 public class listframe extends JFrame implements ActionListener{
 	JButton btnBack;
 	/**

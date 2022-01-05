@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Find Word function frame
+ */
 public class FindWord extends JFrame implements ActionListener {
     JButton findbaseddef_, findbasedsw_,btnBack;
     FindWord(){

@@ -10,7 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Menu frame function frame
+ */
 public class menuframe  extends JFrame implements ActionListener {
     JButton btnView,btnFindWord,btnHistory,btnAdd,btnEdit,btnDelete,btnReset,
     btnRandom,btnChoice,btnAbout;

@@ -10,7 +10,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Random;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Random slang word function frame
+ */
 public class RandomBySW extends JFrame implements ActionListener {
 
     //

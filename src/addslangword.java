@@ -18,7 +18,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * add slangword function frame
+ */
 public class addslangword extends JFrame implements ActionListener {
     JButton Add, Cancel;
     JTextField jtx, jtx1;

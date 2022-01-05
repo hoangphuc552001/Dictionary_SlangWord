@@ -16,7 +16,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javax.xml.crypto.Data;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Slang word function
+ */
 public class SlangWord {
     private static String FILE_SLANGWORD = "slangword.txt";
     private static String FILE_SLANGWORD_PRIMITIVE = "slang.txt";

@@ -11,7 +11,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
+/**
+ * Created by Le Hoang Phuc-19127059
+ * Edit slang word
+ */
 public class editslangword extends JFrame implements ActionListener {
     JButton btnBack, ok, loadAll, savechanged;
     JTextField jIDf;
